@@ -1,0 +1,52 @@
+<project name="GrahamScan">
+
+    <property name="author" value="Bart Kiers, bart@big-o.nl"/>
+
+    <property name="src.dir" value="src"/>
+    <property name="build.dir" value="build"/>
+    <property name="lib.dir" value="lib"/>
+
+    <property name="main.src.dir" value="${src.dir}/main"/>
+    <property name="test.src.dir" value="${src.dir}/test"/>
+    <property name="main.build.dir" value="${build.dir}/main"/>
+    <property name="test.build.dir" value="${build.dir}/test"/>
+
+    <path id="class.path">
+        <fileset dir="${lib.dir}">
+            <include name="*.jar"/>
+        </fileset>
+        <pathelement location="${main.build.dir}"/>
+        <pathelement location="${test.build.dir}"/>
+    </path>
+
+    <target name="init" description="Initializes the output directories">
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${main.build.dir}"/>
+        <mkdir dir="${test.build.dir}"/>
+    </target>
+
+    <target name="clean" description="Deletes build directories">
+        <mkdir dir="${build.dir}"/>
+        <delete includeemptydirs="true">
+            <fileset dir="${build.dir}" includes="**/*"/>
+        </delete>
+    </target>
+
+    <target name="compile" depends="init" description="Compiles the source directory tree">
+        <javac srcdir="${main.src.dir}" destdir="${main.build.dir}" classpathref="class.path" fork="yes"/>
+        <javac srcdir="${test.src.dir}" destdir="${test.build.dir}" classpathref="class.path" fork="yes"/>
+    </target>
+
+    <target name="test" depends="compile" description="Runs all the unit tests">
+        <junit printsummary="yes" fork="yes" haltonfailure="yes">
+            <classpath refid="class.path"/>
+            <formatter type="plain"/>
+            <batchtest fork="yes">
+                <fileset dir="${test.src.dir}">
+                    <include name="**/*Test.java"/>
+                </fileset>
+            </batchtest>
+        </junit>
+    </target>
+
+</project>
