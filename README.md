@@ -6,7 +6,7 @@ A demo of the implementaion is deployed in Appspot: [computational-geometry.apps
 
 ### How to use it
 
-The implmentation is pretty straight forward: everything resides in a single class. Simply copy the class in 
+The implmentation is pretty straight forward: everything resides in a single class ([cg.GrahamScan](https://github.com/bkiers/GrahamScan/blob/master/src/main/cg/GrahamScan.java)). Simply copy the class in 
 your project, and invoke either `GrahamScan#getConvexHull(int[], int[])`:
 
 ```java
