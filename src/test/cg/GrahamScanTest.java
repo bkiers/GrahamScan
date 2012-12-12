@@ -13,6 +13,32 @@ import static org.junit.Assert.assertThat;
 public class GrahamScanTest {
 
     @Test
+    public void areAllCollinearTest() {
+        /*
+            6 |       d   b
+            5 |         f
+            4 |   a   e
+            3 |     c
+            2 |
+            1 |
+            0 '------------
+              0 1 2 3 4 5 6
+        */
+        Point a = new Point(2, 4);
+        Point b = new Point(6, 6);
+        Point c = new Point(3, 3);
+        Point d = new Point(4, 6);
+        Point e = new Point(4, 4);
+        Point f = new Point(5, 5);
+
+        assertThat(GrahamScan.areAllCollinear(Arrays.asList(c)), is(true));
+        assertThat(GrahamScan.areAllCollinear(Arrays.asList(c, e)), is(true));
+        assertThat(GrahamScan.areAllCollinear(Arrays.asList(c, e, f)), is(true));
+        assertThat(GrahamScan.areAllCollinear(Arrays.asList(c, b, e, e, e, f, c)), is(true));
+        assertThat(GrahamScan.areAllCollinear(Arrays.asList(a, b, d)), is(false));
+    }
+
+    @Test
     public void getConvexHullTest() {
 
         /*
@@ -103,6 +129,25 @@ public class GrahamScanTest {
         assertThat(convexHull.get(3), is(k));
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void getConvexHullTestFail() {
+        /*
+            6 |
+            5 |
+            4 |   a
+            3 |     c
+            2 |       f
+            1 |
+            0 '------------
+              0 1 2 3 4 5 6
+        */
+        Point a = new Point(2, 4);
+        Point b = new Point(3, 3);
+        Point c = new Point(4, 2);
+
+        GrahamScan.getConvexHull(Arrays.asList(a, b, c));
+    }
+
     @Test
     public void getLowestPointTest() {
 
@@ -153,7 +198,7 @@ public class GrahamScanTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void getPointsTestFail() {
+    public void getPointsTestFail1() {
         GrahamScan.getConvexHull(new int[]{1, 2, 3, 4, 5}, new int[]{1, 2, 3, 4});
     }
 
