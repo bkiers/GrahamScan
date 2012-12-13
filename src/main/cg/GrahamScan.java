@@ -125,11 +125,9 @@ public final class GrahamScan {
 
             Point head = sorted.get(i);
             Point middle = stack.pop();
-            Point tail = stack.pop();
+            Point tail = stack.peek();
 
             Turn turn = getTurn(tail, middle, head);
-
-            stack.push(tail);
 
             if(turn == Turn.COUNTER_CLOCKWISE) {
                 stack.push(middle);
