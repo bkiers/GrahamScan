@@ -129,15 +129,16 @@ public final class GrahamScan {
 
             Turn turn = getTurn(tail, middle, head);
 
-            if(turn == Turn.COUNTER_CLOCKWISE) {
-                stack.push(middle);
-                stack.push(head);
-            }
-            else if(turn == Turn.COLLINEAR) {
-                stack.push(head);
-            }
-            else {
-                i--;
+            switch(turn) {
+                case COUNTER_CLOCKWISE:
+                    stack.push(middle);
+                    stack.push(head);
+                    break;
+                case COLLINEAR:
+                    stack.push(head);
+                    break;
+                default:
+                    i--;
             }
         }
 
