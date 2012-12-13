@@ -134,11 +134,12 @@ public final class GrahamScan {
                     stack.push(middle);
                     stack.push(head);
                     break;
+                case CLOCKWISE:
+                    i--;
+                    break;
                 case COLLINEAR:
                     stack.push(head);
                     break;
-                default:
-                    i--;
             }
         }
 
