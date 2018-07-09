@@ -55,3 +55,7 @@ java.awt.Point[x=4,y=-11]
 ```
 
 And/or have a look at the [unit tests](https://github.com/bkiers/GrahamScan/blob/master/src/test/cg/GrahamScanTest.java).
+
+## License
+
+[MIT](https://opensource.org/licenses/MIT)
