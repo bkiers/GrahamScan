@@ -48,5 +48,13 @@
             </batchtest>
         </junit>
     </target>
+    
+    <target name="jar">
+        <mkdir dir="build/jar"/>
+        <jar destfile="build/jar/GrahamScan.jar" basedir="build/main">
+            <fileset file= "README.md"/>
+            <fileset file= "LICENSE.txt"/>
+        </jar>
+    </target>
 
 </project>
