@@ -2,8 +2,6 @@
 
 A Java implementation of the Graham Scan algorithm to find the convex hull of a set of points.
 
-A demo of the implementaion is deployed in Appspot: [bkiers-demos.appspot.com/graham-scan](http://bkiers-demos.appspot.com/graham-scan)
-
 ### How to use it
 
 The implementation is pretty straight forward: everything resides in a single class ([GrahamScan](https://github.com/bkiers/GrahamScan/blob/master/src/main/cg/GrahamScan.java)). Simply copy the class in
